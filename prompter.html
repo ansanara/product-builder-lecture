@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>프롬프터 모니터 - Art35mm</title>
+  <title>Prompter Monitor - Art35mm</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="prompter-layout">
-    <!-- 현재 슬라이드 -->
+    <!-- Current Slide -->
     <div class="prompter-box current">
-      <div class="prompter-header">현재 슬라이드 (Current)</div>
+      <div class="prompter-header">Current Slide</div>
       <canvas id="canvas-current" class="prompter-canvas"></canvas>
     </div>
 
-    <!-- 다음 슬라이드 -->
+    <!-- Next Slide -->
     <div class="prompter-box next">
-      <div class="prompter-header">다음 슬라이드 (Next)</div>
+      <div class="prompter-header">Next Slide</div>
       <canvas id="canvas-next" class="prompter-canvas"></canvas>
     </div>
 
-    <!-- 정보 표시줄 (시간/타이머) -->
+    <!-- Info Bar (Time/Timer) -->
     <div class="prompter-info-bar">
       <div class="prompter-timer-group">
         <div class="prompter-time-item">
-          <div class="prompter-time-label">현재 시각</div>
+          <div class="prompter-time-label">Current Time</div>
           <div class="prompter-time-value" id="prompter-clock">00:00:00</div>
         </div>
         <div class="prompter-time-item">
-          <div class="prompter-time-label">발표 시간</div>
+          <div class="prompter-time-label">Elapsed Time</div>
           <div class="prompter-time-value timer" id="prompter-stopwatch">00:00</div>
         </div>
         <div class="prompter-time-item" id="prompter-remaining-container" style="display: none;">
-          <div class="prompter-time-label">남은 시간</div>
+          <div class="prompter-time-label">Remaining Time</div>
           <div class="prompter-time-value" id="prompter-remaining" style="color: var(--accent);">00:00</div>
         </div>
       </div>
 
-      <!-- 메시지 표시 영역 -->
+      <!-- Message Area -->
       <div id="prompter-message-box" style="flex: 1; margin: 0 40px; background: rgba(245, 158, 11, 0.2); border: 1px dashed var(--accent); border-radius: 10px; padding: 10px 20px; display: none; align-items: center; justify-content: center; min-height: 60px;">
         <span id="prompter-message-text" style="font-size: 1.4rem; font-weight: 600; color: var(--accent); text-align: center;"></span>
       </div>
 
       <div class="prompter-timer-group">
-        <button class="btn btn-primary" id="btn-prompter-fullscreen">전체화면</button>
+        <button class="btn btn-primary" id="btn-prompter-fullscreen">Full Screen</button>
       </div>
     </div>
   </div>

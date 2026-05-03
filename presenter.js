@@ -64,7 +64,7 @@ function broadcastToPrompter(msg) {
 // 시계 업데이트
 setInterval(() => {
   const now = new Date();
-  const timeStr = now.toLocaleTimeString('ko-KR', { hour12: false });
+  const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
   clockEl.textContent = timeStr;
   
   // 프롬프터에도 시간 전달
@@ -109,14 +109,14 @@ btnTimerStart.addEventListener('click', () => {
   if (isTimerRunning) {
     clearInterval(timerInterval);
     isTimerRunning = false;
-    btnTimerStart.textContent = '시작';
+    btnTimerStart.textContent = 'Start';
   } else {
     timerInterval = setInterval(() => {
       timerSeconds++;
       updateTimerDisplay();
     }, 1000);
     isTimerRunning = true;
-    btnTimerStart.textContent = '일시정지';
+    btnTimerStart.textContent = 'Pause';
   }
 });
 
@@ -126,7 +126,7 @@ btnTimerReset.addEventListener('click', () => {
   timerSeconds = 0;
   targetTimeInput.value = ''; // 목표 시간 초기화
   updateTimerDisplay();
-  btnTimerStart.textContent = '시작';
+  btnTimerStart.textContent = 'Start';
 });
 
 
@@ -165,7 +165,7 @@ uploadInput.addEventListener('change', (e) => {
       renderPresenter();
     } catch (err) {
       console.error(err);
-      alert('PDF 로드 오류: ' + (err.message || err));
+      alert('PDF Load Error: ' + (err.message || err));
     }
   };
   fileReader.readAsArrayBuffer(file);
@@ -184,7 +184,7 @@ folderUpload.addEventListener('change', async (e) => {
   });
   
   if (imageFiles.length === 0) {
-    alert('폴더 내에 인식 가능한 이미지 파일(jpg, png, webp 등)이 없습니다.');
+    alert('No supported image files found (jpg, png, webp, etc.) in the folder.');
     return;
   }
 
@@ -201,7 +201,7 @@ folderUpload.addEventListener('change', async (e) => {
   presentationMode = 'images';
   pageNum = 1;
 
-  console.log(`${imageFiles.length}개의 이미지를 준비 중...`);
+  console.log(`Preparing ${imageFiles.length} images...`);
 
   // 병렬로 이미지 로드
   const loadPromises = imageFiles.map(file => {
@@ -212,7 +212,7 @@ folderUpload.addEventListener('change', async (e) => {
         resolve({ url, img, dataUrlCache: null });
       };
       img.onerror = () => {
-        console.error('이미지 로드 실패:', file.name);
+        console.error('Image load failed:', file.name);
         resolve(null);
       };
       img.src = url;
@@ -222,7 +222,7 @@ folderUpload.addEventListener('change', async (e) => {
   const results = await Promise.all(loadPromises);
   imageSlides = results.filter(r => r !== null);
   
-  console.log(`준비 완료: ${imageSlides.length}개 슬라이드`);
+  console.log(`Ready: ${imageSlides.length} slides`);
   renderPresenter();
 });
 
@@ -320,7 +320,7 @@ async function renderPresenter() {
       await renderImageToCanvas(imageSlides[pageNum], canvasNext, ctxNext, 1.2);
     }
   } else {
-    nextInfoRow.textContent = '마지막 페이지';
+    nextInfoRow.textContent = 'Last Page';
     ctxNext.clearRect(0, 0, canvasNext.width, canvasNext.height);
   }
 
@@ -384,11 +384,11 @@ function toggleBlackScreen() {
   if (isBlackScreen) {
     btnBlackScreen.classList.remove('btn-danger');
     btnBlackScreen.classList.add('btn-primary');
-    btnBlackScreen.textContent = '블랙 해제 (B)';
+    btnBlackScreen.textContent = 'Resume (B)';
   } else {
     btnBlackScreen.classList.remove('btn-primary');
     btnBlackScreen.classList.add('btn-danger');
-    btnBlackScreen.textContent = '블랙 스크린 (B)';
+    btnBlackScreen.textContent = 'Black Screen (B)';
   }
 }
 
@@ -420,11 +420,11 @@ function sendPrompterMessage() {
     
     // 로그 추가
     const now = new Date();
-    const timeStr = now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     
     const logItem = document.createElement('div');
     logItem.className = 'msg-log-item';
-    logItem.innerHTML = `[${timeStr}] <b>전송됨:</b> ${text}`;
+    logItem.innerHTML = `[${timeStr}] <b>Sent:</b> ${text}`;
     msgLog.appendChild(logItem);
     
     // 하단으로 자동 스크롤
@@ -448,7 +448,7 @@ btnClearMsg.addEventListener('click', () => {
   const logItem = document.createElement('div');
   logItem.className = 'msg-log-item';
   logItem.style.color = 'var(--danger)';
-  logItem.innerHTML = `--- 메시지 삭제됨 ---`;
+  logItem.innerHTML = `--- Message Cleared ---`;
   msgLog.appendChild(logItem);
 });
 

@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF 프리젠터 - 발표자 뷰</title>
+  <title>PDF Presenter - Presenter View</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
   <div class="presenter-layout">
-    <!-- 상단 컨트롤 패널 -->
+    <!-- Top Control Panel -->
     <div class="top-bar">
       <div class="control-group">
         <label class="btn">
-          PDF 열기
+          Open PDF
           <input type="file" id="pdf-upload" accept="application/pdf" style="display: none;">
         </label>
         <label class="btn">
-          이미지 폴더 열기
+          Open Image Folder
           <input type="file" id="folder-upload" webkitdirectory directory style="display: none;">
         </label>
-        <button class="btn btn-accent" id="btn-open-output">출력 모니터</button>
-        <button class="btn btn-accent" id="btn-open-prompter">프롬프터</button>
-        <button class="btn btn-danger" id="btn-black-screen">블랙(B)</button>
+        <button class="btn btn-accent" id="btn-open-output">Output Monitor</button>
+        <button class="btn btn-accent" id="btn-open-prompter">Prompter</button>
+        <button class="btn btn-danger" id="btn-black-screen">Black (B)</button>
 
         <div class="radio-group" id="transition-mode">
           <input type="radio" id="mode-cut" name="transition" value="cut" checked>
@@ -32,11 +32,11 @@
         </div>
       </div>
 
-      <!-- 시계 및 타이머 -->
+      <!-- Clock & Timer -->
       <div class="info-group">
-         <!-- 페이지 점프 -->
+         <!-- Page Jump -->
         <div class="control-group">
-          <span style="font-size:0.9rem; color:var(--text-muted)">이동:</span>
+          <span style="font-size:0.9rem; color:var(--text-muted)">Go:</span>
           <input type="number" id="jump-input" class="input-field" min="1" placeholder="Pg">
           <button class="btn" id="btn-jump">Go</button>
         </div>
@@ -44,22 +44,22 @@
         <div style="display: flex; align-items:center; gap: 10px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 20px;">
           <div class="timer-display" id="stopwatch">00:00</div>
           <div style="display: flex; flex-direction: column; gap: 5px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 15px; margin-left: 10px;">
-            <div style="font-size: 0.75rem; color: var(--text-muted);">목표(분):</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Target (Min):</div>
             <input type="number" id="target-time-input" class="input-field" style="width: 60px; height: 30px;" min="1" placeholder="Min">
           </div>
           <div class="timer-controls">
-            <button class="btn" id="btn-timer-start">시작</button>
-            <button class="btn" id="btn-timer-reset">초기화</button>
+            <button class="btn" id="btn-timer-start">Start</button>
+            <button class="btn" id="btn-timer-reset">Reset</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 뷰어 패널 -->
+    <!-- Viewer Panel -->
     <div class="viewer-container">
       <div class="preview-box current">
         <div class="preview-header">
-          <span>현재 슬라이드 (Current)</span>
+          <span>Current Slide</span>
           <span id="current-page-info">- / -</span>
         </div>
         <div class="slide-wrapper">
@@ -69,7 +69,7 @@
 
       <div class="preview-box">
         <div class="preview-header">
-          <span>다음 슬라이드 (Next)</span>
+          <span>Next Slide</span>
           <span id="next-page-info">-</span>
         </div>
         <div class="slide-wrapper">
@@ -78,20 +78,20 @@
       </div>
     </div>
 
-    <!-- 하단 컨트롤 -->
+    <!-- Bottom Controls -->
     <div class="bottom-bar">
-      <button class="btn" id="btn-prev" style="width: 120px;">&larr; 이전 페이지</button>
-      <button class="btn btn-primary" id="btn-next" style="width: 120px;">다음 페이지 &rarr;</button>
+      <button class="btn" id="btn-prev" style="width: 120px;">&larr; Prev Page</button>
+      <button class="btn btn-primary" id="btn-next" style="width: 120px;">Next Page &rarr;</button>
     </div>
 
-    <!-- 우측 하단 메시지 패널 -->
+    <!-- Prompter Message Panel -->
     <div class="prompter-msg-panel">
-      <div class="panel-header">프롬프터 메시지 전송</div>
+      <div class="panel-header">Send Prompter Message</div>
       <div id="msg-log" class="msg-log-container-v2"></div>
       <div class="panel-input-group">
-        <input type="text" id="prompter-msg-input" class="input-field" style="flex: 1; text-align: left;" placeholder="전달할 내용을 입력하세요...">
-        <button class="btn btn-primary" id="btn-send-msg">전송</button>
-        <button class="btn btn-danger" id="btn-clear-msg">지움</button>
+        <input type="text" id="prompter-msg-input" class="input-field" style="flex: 1; text-align: left;" placeholder="Enter message to send...">
+        <button class="btn btn-primary" id="btn-send-msg">Send</button>
+        <button class="btn btn-danger" id="btn-clear-msg">Clear</button>
       </div>
     </div>
   </div>
