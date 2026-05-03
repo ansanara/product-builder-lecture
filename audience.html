@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>청중 모니터 - Art35mm</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="audience-layout" id="audience-layout">
+    <!-- 오버레이를 제거하고 바로 슬라이드가 보이게 합니다 -->
+
+    <!-- 페이드 효과를 위해 두 개의 캔버스를 겹칩니다 -->
+    <canvas id="canvas-1" class="audience-canvas canvas-show"></canvas>
+    <canvas id="canvas-2" class="audience-canvas canvas-hide"></canvas>
+
+    <!-- 블랙 스크린 오버레이 -->
+    <div id="black-screen"></div>
+  </div>
+
+  <script src="audience.js"></script>
+</body>
+</html>
